@@ -8,13 +8,6 @@
         "maxLambdaSize": "15mb",
         "runtime": "python3.9"
       }
-    },
-    {
-      "src": "build_files.sh",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "static"
-      }
     }
   ],
   "routes": [
@@ -24,7 +17,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "AlgoViz/wsgi.py"
+      "dest": "AlogViz/wsgi.py"
     }
   ]
 }
