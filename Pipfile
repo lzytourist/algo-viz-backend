@@ -13,6 +13,8 @@ django-tinymce = "*"
 django-filter = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
+gunicorn = "*"
+whitenoise = "*"
 
 [dev-packages]
 
