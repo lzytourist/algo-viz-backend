@@ -12,6 +12,7 @@ django-tinymce = "*"
 django-filter = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
+whitenoise = "*"
 
 [dev-packages]
 
