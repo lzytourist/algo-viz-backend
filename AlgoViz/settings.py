@@ -97,25 +97,15 @@ WSGI_APPLICATION = 'AlgoViz.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'HOST': ENV.get('POSTGRES_HOST'),
-    #     'NAME': ENV.get('POSTGRES_DATABASE'),
-    #     'USER': ENV.get('POSTGRES_USER'),
-    #     'PASSWORD': ENV.get('POSTGRES_PASSWORD'),
-    #     'OPTIONS': {
-    #         'client_encoding': 'utf8mb4',
-    #     }
-    # }
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': 'localhost',
-        'NAME': 'algo_viz',
-        'USER': 'algo_viz_user',
-        'PASSWORD': 'algo_viz_pass',
-        # 'OPTIONS': {
-        #     'init_command': 'SET sql_mode="TRANS"',
-        # }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'HOST': ENV.get('POSTGRES_HOST'),
+        'NAME': ENV.get('POSTGRES_DATABASE'),
+        'USER': ENV.get('POSTGRES_USER'),
+        'PASSWORD': ENV.get('POSTGRES_PASSWORD'),
+        'OPTIONS': {
+            'client_encoding': 'utf8mb4',
+        }
     }
 }
 
