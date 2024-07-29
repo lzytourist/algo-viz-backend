@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.urls import include, path
 
 from AlgoViz import settings
+from .views import HomeView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,6 +31,9 @@ urlpatterns = [
 
     path('api/', include('Account.urls')),
     path('api/algorithms/', include('Algorithm.urls')),
+
+    path('', HomeView.as_view(), {'resource': ''}),
+    path('<path:resource>', HomeView.as_view())
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
