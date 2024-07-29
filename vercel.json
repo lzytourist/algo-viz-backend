@@ -26,5 +26,8 @@
       "src": "/(.*)",
       "dest": "AlgoViz/wsgi.py"
     }
-  ]
+  ],
+  "static": {
+    "directory": "staticfiles_build"
+  }
 }
