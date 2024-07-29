@@ -11,14 +11,15 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import dotenv_values
+from dotenv import load_dotenv
 
 from django.contrib import staticfiles
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-ENV = dotenv_values(".env")
+# Load environment variables
+load_dotenv()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -34,10 +35,7 @@ AUTH_USER_MODEL = 'Account.User'
 ALLOWED_HOSTS = ['.vercel.app', '.now.sh', 'localhost']
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',
-    'http://127.0.0.1:3000',
-]
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(',')
 
 # Application definition
 
@@ -100,10 +98,10 @@ WSGI_APPLICATION = 'AlgoViz.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': ENV.get('POSTGRES_HOST'),
-        'NAME': ENV.get('POSTGRES_DATABASE'),
-        'USER': ENV.get('POSTGRES_USER'),
-        'PASSWORD': ENV.get('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('POSTGRES_HOST'),
+        'NAME': os.getenv('POSTGRES_DATABASE'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
         'OPTIONS': {
             'client_encoding': 'utf8mb4',
         }
@@ -154,10 +152,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = ENV.get('EMAIL_HOST')
-EMAIL_HOST_USER = ENV.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = ENV.get('EMAIL_HOST_PASSWORD')
-EMAIL_PORT = ENV.get('EMAIL_PORT')
+EMAIL_HOST = os.getenv('EMAIL_HOST')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.getenv('EMAIL_PORT')
 EMAIL_USE_TLS = True
 EMAIL_USE_SSL = False
 
@@ -215,8 +213,8 @@ AUTH_COOKIE_HTTPONLY = True
 AUTH_COOKIE_SAMESITE = None
 AUTH_COOKIE_PATH = '/'
 
-EMAIL_FRONTEND_PROTOCOL = ENV.get('EMAIL_FRONTEND_PROTOCOL')
-EMAIL_FRONTEND_DOMAIN = ENV.get('EMAIL_FRONTEND_DOMAIN')
-EMAIL_FRONTEND_SITE_NAME = ENV.get('EMAIL_FRONTEND_SITE_NAME')
+EMAIL_FRONTEND_PROTOCOL = os.getenv('EMAIL_FRONTEND_PROTOCOL')
+EMAIL_FRONTEND_DOMAIN = os.getenv('EMAIL_FRONTEND_DOMAIN')
+EMAIL_FRONTEND_SITE_NAME = os.getenv('EMAIL_FRONTEND_SITE_NAME')
 # SITE_NAME = EMAIL_FRONTEND_SITE_NAME
 # DOMAIN = EMAIL_FRONTEND_DOMAIN
