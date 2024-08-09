@@ -22,6 +22,7 @@ class CustomTokenCreateView(TokenCreateView):
                 path=settings.AUTH_COOKIE_PATH,
                 samesite=settings.AUTH_COOKIE_SAMESITE,
                 secure=settings.AUTH_COOKIE_SECURE,
+                domain=settings.AUTH_COOKIE_DOMAIN
             )
 
         return response

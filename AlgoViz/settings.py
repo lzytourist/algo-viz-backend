@@ -96,14 +96,24 @@ WSGI_APPLICATION = 'AlgoViz.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'HOST': os.getenv('POSTGRES_HOST'),
+    #     'NAME': os.getenv('POSTGRES_DATABASE'),
+    #     'USER': os.getenv('POSTGRES_USER'),
+    #     'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+    #     'OPTIONS': {
+    #         'client_encoding': 'utf8mb4',
+    #     }
+    # }
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': os.getenv('POSTGRES_HOST'),
-        'NAME': os.getenv('POSTGRES_DATABASE'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'OPTIONS': {
-            'client_encoding': 'utf8mb4',
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': 'localhost',
+        'NAME': 'algo_viz',
+        'USER': 'root',
+        'PASSWORD': 't00r',
+        "OPTIONS": {
+            "init_command": "SET default_storage_engine=INNODB",
         }
     }
 }
@@ -209,10 +219,11 @@ TINYMCE_DEFAULT_CONFIG = {
 
 AUTH_COOKIE = 'token'
 AUTH_COOKIE_MAX_AGE = 60 * 60 * 24
-AUTH_COOKIE_SECURE = True
-AUTH_COOKIE_HTTPONLY = True
+AUTH_COOKIE_SECURE = os.getenv('AUTH_COOKIE_SECURE')
+AUTH_COOKIE_HTTPONLY = os.getenv('AUTH_COOKIE_HTTPONLY')
 AUTH_COOKIE_SAMESITE = None
-AUTH_COOKIE_PATH = '/'
+AUTH_COOKIE_PATH = os.getenv('AUTH_COOKIE_PATH')
+AUTH_COOKIE_DOMAIN = os.getenv('AUTH_COOKIE_DOMAIN')
 
 EMAIL_FRONTEND_PROTOCOL = os.getenv('EMAIL_FRONTEND_PROTOCOL')
 EMAIL_FRONTEND_DOMAIN = os.getenv('EMAIL_FRONTEND_DOMAIN')
