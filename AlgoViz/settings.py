@@ -28,14 +28,14 @@ load_dotenv()
 SECRET_KEY = 'django-insecure-1zfzkmli6#!=t&+y&l1in1d1@!3xd9ejcgtg32^ooq34zd-9l4'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 AUTH_USER_MODEL = 'Account.User'
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh', 'localhost']
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', 'localhost', '127.0.0.1']
 
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(',')
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:3000').split(',')
 
 # Application definition
 
@@ -97,11 +97,12 @@ WSGI_APPLICATION = 'AlgoViz.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django_cockroachdb',
         'HOST': os.getenv('POSTGRES_HOST'),
         'NAME': os.getenv('POSTGRES_DATABASE'),
         'USER': os.getenv('POSTGRES_USER'),
         'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'PORT': os.getenv('POSTGRES_PORT'),
         'OPTIONS': {
             'client_encoding': 'utf8mb4',
         }
