@@ -13,6 +13,7 @@ django-filter = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
 whitenoise = "*"
+django-cockroachdb = "*"
 
 [dev-packages]
 
